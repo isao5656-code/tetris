@@ -4,6 +4,7 @@
   --text: #f5f7ff;
   --muted: #afb5cc;
   --danger: #ff6a6a;
+  --ui-reserved-height: 18.8rem;
 }
 
 * {
@@ -29,9 +30,9 @@ body {
   height: 100svh;
   margin: 0 auto;
   padding: max(0.55rem, env(safe-area-inset-top)) 0.65rem calc(0.55rem + env(safe-area-inset-bottom));
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.45rem;
-  grid-template-rows: auto minmax(0, 1fr) auto auto auto auto;
 }
 
 .hud {
@@ -65,14 +66,16 @@ body {
   padding: 0.35rem;
   box-shadow: 0 6px 20px rgb(0 0 0 / 35%);
   min-height: 0;
+  flex: 1;
   display: grid;
   place-items: center;
+  overflow: hidden;
 }
 
 #board {
-  height: 100%;
-  width: auto;
-  max-width: 100%;
+  width: min(100%, max(132px, calc((100svh - var(--ui-reserved-height) - env(safe-area-inset-top) - env(safe-area-inset-bottom)) / 2)));
+  height: auto;
+  max-height: 100%;
   aspect-ratio: 1 / 2;
   display: block;
   border-radius: 8px;
@@ -128,6 +131,10 @@ body {
 }
 
 @media (min-width: 700px) {
+  :root {
+    --ui-reserved-height: 20rem;
+  }
+
   .app {
     height: 100dvh;
     width: min(100vw, 560px);
