@@ -44,6 +44,13 @@ const state = {
   touchStart: null
 };
 
+
+let lastTouchEndAt = 0;
+
+function shouldBlockBrowserGesture() {
+  return state.running && !state.gameOver;
+}
+
 function createBoard() {
   return Array.from({ length: ROWS }, () => Array(COLS).fill(0));
 }
@@ -286,6 +293,29 @@ canvas.addEventListener('touchend', (event) => {
 startBtn.addEventListener('click', () => {
   resetGame();
 });
+
+
+document.addEventListener('gesturestart', (event) => {
+  if (shouldBlockBrowserGesture()) {
+    event.preventDefault();
+  }
+}, { passive: false });
+
+document.addEventListener('touchmove', (event) => {
+  if (shouldBlockBrowserGesture() && event.touches.length > 1) {
+    event.preventDefault();
+  }
+}, { passive: false });
+
+document.addEventListener('touchend', (event) => {
+  if (!shouldBlockBrowserGesture()) return;
+  const now = Date.now();
+  if (now - lastTouchEndAt < 300) {
+    event.preventDefault();
+  }
+  lastTouchEndAt = now;
+}, { passive: false });
+
 
 resetGame();
 requestAnimationFrame(update);
