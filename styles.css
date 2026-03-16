@@ -1,0 +1,130 @@
+:root {
+  --bg: #12121a;
+  --surface: #1f1f2d;
+  --accent: #68d6ff;
+  --text: #f5f7ff;
+  --muted: #afb5cc;
+  --danger: #ff6a6a;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+  background: radial-gradient(circle at top, #1b2133, var(--bg));
+  color: var(--text);
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem 1rem calc(env(safe-area-inset-bottom) + 1rem);
+  display: grid;
+  gap: 0.9rem;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.hud-item {
+  background: var(--surface);
+  border-radius: 12px;
+  text-align: center;
+  padding: 0.55rem;
+}
+
+.hud-item .label {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.hud-item p:last-child {
+  margin: 0.2rem 0 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.board-wrap {
+  background: #0d1020;
+  border-radius: 14px;
+  padding: 0.45rem;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 35%);
+}
+
+#board {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  touch-action: none;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+.btn,
+.btn-secondary {
+  border: 0;
+  border-radius: 12px;
+  color: var(--text);
+  background: linear-gradient(180deg, #323952, #252a3f);
+  font-size: 1.4rem;
+  padding: 0.75rem;
+  font-weight: 700;
+  min-height: 54px;
+}
+
+.btn:active,
+.btn-secondary:active {
+  transform: translateY(1px);
+  filter: brightness(0.92);
+}
+
+.btn-drop {
+  background: linear-gradient(180deg, #2f5b88, #1f3f61);
+}
+
+.actions {
+  display: grid;
+}
+
+.btn-secondary {
+  font-size: 1rem;
+  background: linear-gradient(180deg, #44669f, #2d4d7f);
+}
+
+.hint,
+.message {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.message {
+  min-height: 1.2rem;
+  color: var(--danger);
+  font-weight: 700;
+}
+
+@media (min-width: 700px) {
+  .app {
+    max-width: 560px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr 1fr 1fr 1.3fr;
+  }
+}
