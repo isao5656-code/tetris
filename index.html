@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>モバイル対応テトリス</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hud">
+        <div class="hud-item">
+          <p class="label">スコア</p>
+          <p id="score">0</p>
+        </div>
+        <div class="hud-item">
+          <p class="label">レベル</p>
+          <p id="level">1</p>
+        </div>
+        <div class="hud-item">
+          <p class="label">ライン</p>
+          <p id="lines">0</p>
+        </div>
+      </header>
+
+      <section class="board-wrap">
+        <canvas id="board" width="300" height="600" aria-label="テトリス盤面"></canvas>
+      </section>
+
+      <section class="controls" aria-label="ゲーム操作ボタン">
+        <button class="btn" data-action="left">◀ 左</button>
+        <button class="btn" data-action="rotate">⟳ 回転</button>
+        <button class="btn" data-action="right">右 ▶</button>
+        <button class="btn btn-drop" data-action="drop">▼ ソフトドロップ</button>
+      </section>
+
+      <section class="actions">
+        <button id="startBtn" class="btn-secondary">スタート / リスタート</button>
+        <button id="pauseBtn" class="btn-secondary btn-pause">一時停止</button>
+      </section>
+
+      <p class="hint">スワイプ: 左右移動 / 上で回転 / 下でソフトドロップ</p>
+      <p id="message" class="message"></p>
+    </main>
+
+    <script src="game.js" defer></script>
+  </body>
+</html>
